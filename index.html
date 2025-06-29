@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>COSTCODLE</title>
+    <title>PRICE OF KNIGHT</title>
 
     <!-- Google tag (gtag.js) -->
     <script
@@ -38,7 +38,7 @@
       sizes="16x16"
       href="/public/favicon-16x16.png"
     />
-    <link rel="manifest" href="/public/site.webmanifest" />
+    <!--link rel="manifest" href="/public/site.webmanifest" /-->
     <link
       rel="mask-icon"
       href="/public/safari-pinned-tab.svg"
@@ -61,7 +61,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Goudy Bookletter 1911&display=swap"
       rel="stylesheet"
     />
 
@@ -70,26 +70,26 @@
       defer
     ></script>
 
-    <script src="backend/scripts/main.js" defer></script>
-    <script src="backend/scripts/searchBar.js" defer></script>
+    <script type="module" src="backend/scripts/main.js" defer></script>
+    <!--script src="backend/scripts/searchBar.js" defer></script-->
   </head>
 
   <body>
     <div id="main-page">
       <header id="site-header">
         <div id="header-container">
-          <button id="info-button" data-overlay="info-overlay" type="button">
+          <!--button id="info-button" data-overlay="info-overlay" type="button">
             ?
-          </button>
+          </button-->
           <h1 id="title" class="title costco-red">
-            <center>COSTCO<span class="costco-blue">DLE</span></center>
+            <center>THE PRICE OF KNIGHT (alpha)</center>
           </h1>
-          <button id="stat-button" data-overlay="stats-overlay" type="button">
+          <!--button id="stat-button" data-overlay="stats-overlay" type="button">
             <img
               src="./assets/stat-logo.svg"
               style="height: 100%; width: 100%"
             />
-          </button>
+          </button-->
         </div>
       </header>
 
@@ -136,8 +136,7 @@
             <div class="info-section">
               <h3><u>The game</u></h3>
               <p>
-                Guess the <span class="costco-red">COSTCO</span
-                ><span class="costco-blue">DLE</span> in 6 tries.
+                Guess the <span class="costco-red">PRICE OF KNIGHT</span> in 6 tries. (Card will most often not happen to be a knight)
               </p>
               <br />
               <ul style="list-style-type: square">
@@ -315,13 +314,13 @@
       <footer id="site-footer">
         <div id="database-link">
           <a
-            href="https://costcofdb.com/food-database"
+            href="https://scryfall.com/"
             target="_blank"
             rel="noopener noreferrer"
-            >Costco Food Database</a
+            >Scryfall</a
           >
         </div>
-        <div id="dev-name">&copy;Kerm</div>
+        <div id="dev-name">&copy;Ryan S. Alexander</div>
       </footer>
     </div>
   </body>

@@ -12,6 +12,8 @@ let shakeTimeout;
 let toastTimeout;
 let warningTimeout;
 
+import { getCard } from "./scryfall.js";
+
 /*
   Global variable constants
 */
@@ -24,11 +26,11 @@ const gameNumber = getGameNumber();
 const input = document.getElementById("guess-input");
 const buttonInput = document.getElementById("guess-button");
 
-const infoButton = document.getElementById("info-button");
-infoButton.addEventListener("click", switchState);
+//const infoButton = document.getElementById("info-button");
+//infoButton.addEventListener("click", switchState);
 
-const statButton = document.getElementById("stat-button");
-statButton.addEventListener("click", switchState);
+//const statButton = document.getElementById("stat-button");
+//statButton.addEventListener("click", switchState);
 
 //User stats object
 const userStats = JSON.parse(localStorage.getItem("stats")) || {
@@ -53,30 +55,7 @@ const gameState = JSON.parse(localStorage.getItem("state")) || {
 playGame();
 
 function playGame() {
-  console.log("ahhhh");
   fetchGameData(getGameNumber());
-}
-
-async function getCard(cardName) {
-    myBody={
-        "exact": cardName
-    }
-    let response = await fetch('https://api.scryfall.com/cards/named?exact=' + cardName.replaceAll(' ','+'), {
-        method: 'GET',
-        headers: {
-        'Content-Type': 'application/json'
-        }
-    });
-    let cardData = await response.json();
-    console.log(cardData);
-    $.ajax({
-      type: "GET",
-      url: "~/scryfall.py",
-      data: { param: "yaya" }
-    }).done(function( o ) {
-      // do something
-    });
-    return cardData;
 }
 
 /*
@@ -85,11 +64,10 @@ async function getCard(cardName) {
 
 //Fetches the current day's game data from the json and starts game
 function fetchGameData(gameNumber) {
-  getCard("Knight of Dawn")
+  getCard()
     .then((json) => {
       productName = json.name;
       productPrice = json.prices.usd;
-      productPrice = Number(productPrice.slice(1, productPrice.length));
       productImage = json.image_uris.large;
 
       initializeGame();
@@ -127,13 +105,13 @@ function initializeGame() {
 }
 
 function convertToShareButton() {
+  // Temporarily set up as refresh for testing
   const containerElem = document.getElementById("input-container");
   const shareButtonElem = document.createElement("button");
   shareButtonElem.setAttribute("id", "share-button");
   containerElem.innerHTML = "";
-  shareButtonElem.innerHTML = `Share
-  <img src="./assets/share-icon.svg" class="share-icon" />`;
-  shareButtonElem.addEventListener("click", copyStats);
+  shareButtonElem.innerHTML = `Play Again`;
+  shareButtonElem.addEventListener("click", refresh);
   containerElem.appendChild(shareButtonElem);
 }
 
@@ -194,7 +172,7 @@ function buttonEventListener() {
 
 function handleInput() {
   const strippedString = input.value.replaceAll(",", "");
-  const guess = Number(strippedString).toFixed(2);
+  const guess = Number(strippedString).toFixed(3);
 
   if (isNaN(guess) || !strippedString) {
     displayWarning();
@@ -221,6 +199,10 @@ function handleInput() {
       }, 1000);
     }, 2000);
   }
+}
+
+function refresh() {
+  location.reload()
 }
 
 function copyStats() {
