@@ -172,7 +172,7 @@ function buttonEventListener() {
 
 function handleInput() {
   const strippedString = input.value.replaceAll(",", "");
-  const guess = Number(strippedString).toFixed(3);
+  const guess = Number(strippedString).toFixed(2);
 
   if (isNaN(guess) || !strippedString) {
     displayWarning();
