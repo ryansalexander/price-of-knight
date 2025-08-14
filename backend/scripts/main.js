@@ -12,7 +12,7 @@ let shakeTimeout;
 let toastTimeout;
 let warningTimeout;
 
-import { getCard } from "./scryfall.js";
+import { getCard, loadCard } from "./scryfall.js";
 
 /*
   Global variable constants
@@ -64,7 +64,7 @@ function playGame() {
 
 //Fetches the current day's game data from the json and starts game
 function fetchGameData(gameNumber) {
-  getCard()
+  loadCard()
     .then((json) => {
       productName = json.name;
       productPrice = json.prices.usd;
